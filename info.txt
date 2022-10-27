@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: unb_pro_regular
+font link: http://www.marca.unb.br/fontesunb.php
+font author: Universidade de Brasilia
+font author site: http://www.marca.unb.br/introducao.php
+Slogan Font: LindenHill-webfont.ttf
+
+icon designer: Azis
+icon designer link: /azisher
+        
+{"bg":"#488eff","icon":"#7fe7ff","font":"#ffffff","slogan":"#ffffff"}
+      

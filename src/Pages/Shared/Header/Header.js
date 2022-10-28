@@ -35,7 +35,7 @@ const Header = () => {
 
                     />
                 </div>
-                
+
                 <Link to='/login'><Button color="gray">
                     Login
                 </Button></Link>
@@ -63,21 +63,20 @@ const Header = () => {
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>
-                <Navbar.Link
-                    href="/navbars"
-                    active={true}
+                <Link
+                    to="/"
                 >
                     Home
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
+                </Link>
+                <Link to="/courses">
                     Courses
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
+                </Link>
+                <Link to="/blogs">
                     Blogs
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">
+                </Link>
+                <Link to="/faq">
                     FAQ
-                </Navbar.Link>
+                </Link>
             </Navbar.Collapse>
         </Navbar>
     );

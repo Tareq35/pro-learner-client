@@ -8,6 +8,7 @@ const Header = () => {
     const [toggleChange, setToggleChange] = useState(false);
     return (
         <Navbar
+            className='shadow-md'
             fluid={true}
             rounded={true}
         >

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './CourseItem.css';
 
 const CourseItem = ({ course }) => {
-    const { title, description, img, price, rating } = course;
+    const { title, description, img, price, rating, id } = course;
 
     return (
         <div className='flex justify-center'>
@@ -14,12 +14,12 @@ const CourseItem = ({ course }) => {
                     imgAlt={title}
                     imgSrc={img}
                 >
-                    <Link to="#">
+                    <div>
                         <h5 className="text-xl font-semibold mb-3 tracking-tight text-gray-900 dark:text-white">
                             {title}
                         </h5>
                         <p className='line-clamp-4'>{description}</p>
-                    </Link>
+                    </div>
                     <div className="mt-2.5 mb-5 flex items-center">
                         <svg
                             className="h-5 w-5 text-yellow-300"
@@ -71,10 +71,10 @@ const CourseItem = ({ course }) => {
                         </span>
 
                         <Link
-                            to="#"
+                            to={`/coursesDetails/${id}`}
                             className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
-                            Buy Course
+                            Details
                         </Link>
                     </div>
                 </Card>

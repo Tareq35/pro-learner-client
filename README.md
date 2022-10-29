@@ -1,12 +1,21 @@
-# Getting Started with Create React App
+# Welcome to Pro Learner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Website link [Pro Learner](https://pro-learner-990a0.web.app/).
 
-## Available Scripts
+##  Features and Functionality of this website.
+1. Authentication
+2. Private route
+3. Sidebar Navigation
+4. Theme Change
+5. Download PDF
 
-In the project directory, you can run:
-
-### `npm start`
+###  Technologies used in this project
+1. React Router Dom
+2. Flowbite
+3. Firebase
+4. Vercel
+5. Tailwind
+6. Git
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

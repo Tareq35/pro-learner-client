@@ -1,6 +1,7 @@
 import { Card } from 'flowbite-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './CourseItem.css';
 
 const CourseItem = ({ course }) => {
     const { title, description, img, price, rating } = course;
@@ -9,7 +10,7 @@ const CourseItem = ({ course }) => {
         <div className='flex justify-center'>
             <div className="max-w-sm">
 
-                <Card className=''
+                <Card id='card-image'
                     imgAlt={title}
                     imgSrc={img}
                 >

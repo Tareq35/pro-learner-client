@@ -4,7 +4,8 @@ import React from 'react';
 const FAQ = () => {
     return (
         <div className='max-w-screen-md mx-auto'>
-            <h2 className='text-3xl my-10 text-center'>Frequently Asked Questions</h2>
+            <h2 className='text-4xl my-10 text-center font-bold'>Frequently Asked Questions</h2>
+            <hr className='mx-auto mb-20' />
             <Accordion>
                 <Accordion.Panel>
                     <Accordion.Title>

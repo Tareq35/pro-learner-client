@@ -1,25 +1,20 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
-    const { providerLogin, createUser, updateUserProfile } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const { providerLogin, createUser, updateUserProfile, notify } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
-    const notify = (message) => toast.error(message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-    });
+
+    const from = location.state?.from?.pathname || '/';
+
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -30,17 +25,22 @@ const Register = () => {
 
         createUser(email, password)
             .then(result => {
-                const user = result.user;
+                // const user = result.user;
                 // console.log(user);
                 // setError('');
                 form.reset();
+                notify('Registration Successful', 'success')
                 handleUpdateUserProfile(name, photoURL);
+                navigate('/login', { replace: true });
+                // window.location.reload()
             })
             .catch(e => {
                 console.error(e)
-                notify(e.message);
+                notify(e.message, 'error');
             });
     }
+
+
 
     const handleUpdateUserProfile = (name, photoURL) => {
         const profile = {
@@ -55,8 +55,10 @@ const Register = () => {
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                // const user = result.user;
+                // console.log(user);
+                notify('Google Registration Successful', 'success')
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error));
     }
@@ -64,8 +66,10 @@ const Register = () => {
     const handleGithubSignIn = () => {
         providerLogin(githubProvider)
             .then(result => {
-                const user = result.user;
+                // const user = result.user;
                 // console.log(user);
+                notify('Github Registration Successful', 'success')
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error));
     }
@@ -142,24 +146,12 @@ const Register = () => {
                 </Button>
                 <p className='text-center'>Or</p>
                 <Button onClick={handleGoogleSignIn} >
-                    Login with Google
+                    Registration with Google
                 </Button>
                 <Button onClick={handleGithubSignIn} >
-                    Login with Github
+                    Registration with Github
                 </Button>
             </form>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
         </div>
     );
 };

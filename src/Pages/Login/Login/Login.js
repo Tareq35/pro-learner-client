@@ -4,27 +4,15 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { providerLogin, signIn } = useContext(AuthContext);
+    const { providerLogin, signIn, notify } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    const notify = (message) => toast.error(message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-    });
 
     const from = location.state?.from?.pathname || '/';
 
@@ -37,14 +25,15 @@ const Login = () => {
         const password = form.password.value;
         signIn(email, password)
             .then(result => {
-                const user = result.user;
+                // const user = result.user;
                 // console.log(user);
                 form.reset();
+                notify('Login Successful', 'success')
                 // setError('');
                 navigate(from, { replace: true });
             })
             .catch(error => {
-                notify(error.message);
+                notify(error.message, 'error');
             });
     }
 
@@ -53,8 +42,10 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
             .then(result => {
-                const user = result.user;
+                // const user = result.user;
                 // console.log(user);
+                notify('Google Login Successful', 'success')
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error));
     }
@@ -62,8 +53,10 @@ const Login = () => {
     const handleGithubSignIn = () => {
         providerLogin(githubProvider)
             .then(result => {
-                const user = result.user;
+                // const user = result.user;
                 // console.log(user);
+                notify('Github Login Successful', 'success')
+                navigate(from, { replace: true });
             })
             .catch(error => console.error(error));
     }
@@ -116,18 +109,6 @@ const Login = () => {
                     Login with Github
                 </Button>
             </form>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
         </div>
     );
 };

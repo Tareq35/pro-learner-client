@@ -1,22 +1,33 @@
-import { Avatar, Button, Dropdown, Navbar, ToggleSwitch } from 'flowbite-react';
-import React from 'react';
+import { Avatar, Button, Dropdown, Navbar, ToggleSwitch, Tooltip } from 'flowbite-react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo/cover.png'
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const Header = () => {
     const [toggleChange, setToggleChange] = useState(false);
+
+    const { user, logOut } = useContext(AuthContext);
+    // console.log(user);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
+
     return (
         <Navbar
             className='shadow-md'
             fluid={true}
             rounded={true}
         >
-            <Navbar.Brand href="https://flowbite.com/">
+            <Navbar.Brand>
                 <img
                     src={logo}
                     className="mr-3 h-6 sm:h-9 rounded-full"
-                    alt="Flowbite Logo"
+                    alt=""
                 />
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
                     Pro Learner
@@ -37,30 +48,39 @@ const Header = () => {
                     />
                 </div>
 
-                <Link to='/login'><Button color="gray">
-                    Login
-                </Button></Link>
-                <Link to='/register'><Button color="gray">
-                    Register
-                </Button></Link>
+                {
+                    !user?.displayName ?
+                        <>
+                            <Link to='/login'><Button color="gray">
+                                Login
+                            </Button></Link>
+                            <Link to='/register'><Button color="gray">
+                                Register
+                            </Button></Link>
+                        </> :
 
-                <Dropdown
-                    arrowIcon={false}
-                    inline={true}
-                    label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true} />}
-                >
-                    <Dropdown.Header>
-                        <span className="block text-sm">
-                            Bonnie Green
-                        </span>
-                        <span className="block truncate text-sm font-medium">
-                            name@flowbite.com
-                        </span>
-                    </Dropdown.Header>
-                    <Dropdown.Item>
-                        Logout
-                    </Dropdown.Item>
-                </Dropdown>
+                        <Tooltip
+                            content={user.displayName}
+                            placement="bottom"
+                        >
+                            <Dropdown
+                                arrowIcon={false}
+                                inline={true}
+                                label={<Avatar alt="User settings" img={user.photoURL} rounded={true} />}
+                            >
+                                <Dropdown.Header>
+                                    <span className="block text-sm">
+                                        {user.displayName}
+                                    </span>
+                                    <span className="block truncate text-sm font-medium">
+                                        {user.email}
+                                    </span>
+                                </Dropdown.Header>
+                                <Dropdown.Item onClick={handleLogOut}>
+                                    Logout
+                                </Dropdown.Item>
+                            </Dropdown>
+                        </Tooltip>}
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>

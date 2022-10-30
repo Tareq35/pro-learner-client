@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -34,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log('inside auth state change', currentUser);
+            // console.log('inside auth state change', currentUser);
             setUser(currentUser)
             setLoading(false);
         });
@@ -45,19 +47,59 @@ const AuthProvider = ({ children }) => {
 
     }, [])
 
-    const authInfo = { 
-        user, 
-        loading, 
-        providerLogin, 
-        logOut, 
+    const notify = (message, type) => {
+        if (type === 'error') {
+            toast.error(message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        }
+        if(type === "success"){
+            toast.success(message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        }
+    };
+
+    const authInfo = {
+        notify,
+        user,
+        loading,
+        providerLogin,
+        logOut,
         updateUserProfile,
-        createUser, 
-        signIn 
+        createUser,
+        signIn
     };
 
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
         </AuthContext.Provider>
     );
 };

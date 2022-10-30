@@ -8,7 +8,7 @@ const Courses = () => {
     const courses = useLoaderData();
     return (
 
-        <div className='flex justify-center mx-20'>
+        <div className='md:flex justify-center mx-20'>
             <LeftSideNav></LeftSideNav>
             <div>
                 <h1 className='text-4xl text-center mt-10 mb-3 font-bold'>Our Courses</h1>

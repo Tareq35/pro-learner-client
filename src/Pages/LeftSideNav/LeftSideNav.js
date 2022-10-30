@@ -14,7 +14,7 @@ const LeftSideNav = () => {
     }, [])
 
     return (
-        <div className='mt-44 sticky top-44'>
+        <div className='mt-44'>
             <div className="w-fit shadow-md border rounded-md">
                 <Sidebar aria-label="Default sidebar example">
                     <Sidebar.Items>
@@ -38,7 +38,7 @@ const LeftSideNav = () => {
             </div>
         </div>
 
-        
+
     );
 };
 

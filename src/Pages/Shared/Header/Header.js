@@ -30,7 +30,7 @@ const Header = () => {
                     alt=""
                 />
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                    Pro Learner
+                    <span className='text-blue-600'>Pro</span> Learner
                 </span>
             </Navbar.Brand>
             <div className="flex items-center md:order-2 gap-3">

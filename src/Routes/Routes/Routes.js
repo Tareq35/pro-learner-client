@@ -1,3 +1,4 @@
+import { Footer } from "flowbite-react";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
 import Blogs from "../../Pages/Blogs/Blogs/Blogs";

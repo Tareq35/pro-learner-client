@@ -1,6 +1,6 @@
 import { Button, Card } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { useLoaderData,  useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const CheckOut = () => {
@@ -15,7 +15,7 @@ const CheckOut = () => {
     // const from = location.state?.from?.pathname || '/';
 
     return (
-        <div className='max-w-md px-3 mx-auto mt-20'>
+        <div className='max-w-md px-3 mx-auto mt-20 mb-96 pb-24'>
             <Card>
                 <div className='flex justify-between items-center'>
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">

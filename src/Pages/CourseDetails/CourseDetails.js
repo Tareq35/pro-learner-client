@@ -11,8 +11,8 @@ const CourseDetails = () => {
     console.log(ref);
 
     return (
-        <>
-            <div className='flex justify-center mt-20'>
+        <div>
+            <div className='flex justify-center mt-20 mb-60'>
 
                 <div className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl lg:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 
@@ -44,13 +44,14 @@ const CourseDetails = () => {
                     </div>
                 </div>
             </div>
+{/*             
             <div ref={ref} className='w-1/3 p-3 mx-auto'>
                 <img src={img} alt="" />
                 <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h1>
                 <p className="font-normal text-gray-700 dark:text-gray-400 py-5">{description}</p>
                 <p>Price: ${price}</p>
-            </div>
-        </>
+            </div> */}
+        </div>
     );
 };
 

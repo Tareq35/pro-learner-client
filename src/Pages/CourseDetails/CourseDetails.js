@@ -14,7 +14,7 @@ const CourseDetails = () => {
         <div>
             <div className='flex justify-center mt-20 mb-60'>
 
-                <div className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl lg:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                <div ref={ref} className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl lg:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 
                     <img className="object-cover w-full h-96 rounded-t-lg md:h-auto pl-4 md:w-80 md:rounded-none" src={img} alt="" />
 
@@ -22,7 +22,7 @@ const CourseDetails = () => {
 
                         <div className='flex justify-between items-center'>
                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
-                            <Pdf targetRef={ref} filename="div-blue.pdf">
+                            <Pdf targetRef={ref} filename={title}>
                                 {({ toPdf }) => (
                                     <Button onClick={toPdf} gradientMonochrome="info">
                                         Download PDF
@@ -44,13 +44,16 @@ const CourseDetails = () => {
                     </div>
                 </div>
             </div>
-{/*             
-            <div ref={ref} className='w-1/3 p-3 mx-auto'>
-                <img src={img} alt="" />
-                <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h1>
-                <p className="font-normal text-gray-700 dark:text-gray-400 py-5">{description}</p>
-                <p>Price: ${price}</p>
-            </div> */}
+
+            {/* {
+                // display && 
+                <div ref={ref} className='w-1/3 p-3 mx-auto'>
+                    <img src={img} alt="" />
+                    <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h1>
+                    <p className="font-normal text-gray-700 dark:text-gray-400 py-5">{description}</p>
+                    <p>Price: ${price}</p>
+                </div>
+            } */}
         </div>
     );
 };
